@@ -6,7 +6,7 @@ mod CSScolors;
 mod colorsChallange;
 
 fn main() {
-    println!("Hello, world!");
+    println!("Hello, Rust!");
 }
 //use solution::*;
 
