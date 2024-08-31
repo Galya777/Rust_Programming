@@ -1,0 +1,61 @@
+#[derive(Default)]
+pub struct NucleotideCounter {
+    pub a: usize,
+    pub c: usize,
+    pub g: usize,
+    pub t: usize,
+}
+
+impl NucleotideCounter {
+    fn new() -> Self {
+        NucleotideCounter::default()
+    }
+}
+
+pub fn counts(dna: &[char]) -> NucleotideCounter {
+    let mut counter = NucleotideCounter::new();
+
+    for c in dna {
+        match c {
+            'G' => counter.g += 1,
+            'C' => counter.c += 1,
+            'A' => counter.a += 1,
+            'T' => counter.t += 1,
+            _ => panic!("Unexpected DNA base"),
+        }
+    }
+
+    counter
+}
+
+pub fn dna_complement(dna: &[char]) -> Vec<char> {
+    let mut result = Vec::with_capacity(dna.len());
+
+    for c in dna {
+        match c {
+            'G' => result.push('C'),
+            'C' => result.push('G'),
+            'A' => result.push('T'),
+            'T' => result.push('A'),
+            _ => panic!("Unexpected DNA base"),
+        }
+    }
+
+    result
+}
+
+pub fn reverse_rna_complement(dna: &[char]) -> Vec<char> {
+    let mut result = Vec::with_capacity(dna.len());
+
+    for c in dna.into_iter().rev() {
+        match c {
+            'G' => result.push('C'),
+            'C' => result.push('G'),
+            'A' => result.push('U'),
+            'T' => result.push('A'),
+            _ => panic!("Unexpected DNA base"),
+        }
+    }
+
+    result
+}
